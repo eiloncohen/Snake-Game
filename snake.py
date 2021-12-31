@@ -9,12 +9,15 @@ LEFT = 180
 
 
 class Snake:
+
     def __init__(self):
         self.snake_body = []
         for i in range(3):
             tim = self.add_new_piece()
             tim.setposition(LOCATIONS[i])
             self.snake_body.append(tim)
+        self.head = self.snake_body[0]
+        self.head.color("red")
 
     def add_new_piece(self):
         tim = Turtle("square")
@@ -30,18 +33,23 @@ class Snake:
         self.snake_body[0].forward(MOVE_DISTANCE)
 
     def up(self):
-        if self.snake_body[0].heading() != DOWN:
-            self.snake_body[0].setheading(UP)
+        if self.head.heading() != DOWN:
+            self.head.setheading(UP)
 
     def down(self):
-        if self.snake_body[0].heading() != UP:
-            self.snake_body[0].setheading(DOWN)
+        if self.head.heading() != UP:
+            self.head.setheading(DOWN)
 
     def left(self):
-        if self.snake_body[0].heading() != RIGHT:
-            self.snake_body[0].setheading(LEFT)
+        if self.head.heading() != RIGHT:
+            self.head.setheading(LEFT)
 
     def right(self):
-        if self.snake_body[0].heading() != LEFT:
-            self.snake_body[0].setheading(RIGHT)
+        if self.head.heading() != LEFT:
+            self.head.setheading(RIGHT)
 
+    def if_own_collision_happend(self):
+        for piece in range(1, len(self.snake_body) - 1, 1):
+            if self.head.distance(self.snake_body[piece]) < 10:
+                return True
+        return False

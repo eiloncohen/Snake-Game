@@ -1,7 +1,7 @@
 from turtle import Turtle
 
 HEIGHT = 250
-WIDTH = -80
+WIDTH = 0
 
 class ScoreBored(Turtle):
     def __init__(self):
@@ -19,5 +19,5 @@ class ScoreBored(Turtle):
         self.write(f"Score: {self.counter}", move=False, align='center', font=("Verdana", 30, "normal"))
 
     def game_over(self):
-        self.clear()
-        self.write(f"Game Over, your score is: {self.counter}", move=False, align='center', font=("Verdana", 30, "normal"))
+        self.setposition(0, 0)
+        self.write("Game Over.", move=False, align='center', font=("Verdana", 30, "normal"))
